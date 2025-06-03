@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Siapa Jodoh Anime Kamu?</title>
+  <style>
+    body {
+      font-family: 'Impact', 'Arial Black', sans-serif;
+      background: linear-gradient(to right, #ff9ff3, #feca57);
+      text-align: center;
+      padding: 50px;
+      color: #2d3436;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      font-size: 1.2em;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 10px;
+      border: 2px solid #000;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 1.8em;
+      font-weight: bold;
+      text-shadow: 1px 1px #fff;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 1.1em;
+      color: #000;
+    }
+
+    .instagram-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #e1306c;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .easter-egg {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .easter-egg:hover {
+      color: #d63031;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SIAPA JODOH ANIME KAMU? 💘🤓</h1>
+
+  <input type="text" id="nameInput" placeholder="Masukin nama lo..."><br>
+  <select id="genderSelect">
+    <option value="cowok">Cowok (Cari Waifu)</option>
+    <option value="cewek">Cewek (Cari Husbu)</option>
+  </select><br>
+
+  <button onclick="cariJodoh()">CARI JODOH GW 😭</button>
+
+  <div id="result"></div>
+
+  <div class="footer">
+    <p>By: <strong>Marriadi02indra</strong></p>
+    <a class="instagram-button" href="https://instagram.com/Marr_02_m0th3rb0ard" target="_blank">Kunjungi IG Gue 🚀</a>
+  </div>
+
+  <div class="easter-egg" onclick="alert('Kok kamu nemu sih? Kamu Wibu Sejati ya! 😳🔍')">
+    🥷 Pssst... jangan klik ini ya...
+  </div>
+
+  <script>
+    const waifus = [
+      { name: "Nakano Miku", reason: "Cewek kalem yang hobi pake headset & diem-diem sayang 💙" },
+      { name: "Sakura Haruno", reason: "Punya tangan baja dan cinta tak terbalas 💔💪" },
+      { name: "Hinata Hyuga", reason: "Paling kalem, paling setia, paling istriable 🥺" },
+      { name: "Zero Two", reason: "Kamu pengen naik mecha bareng pacar 💀" },
+      { name: "Rias Gremory", reason: "Waktu pertama liat dia... lo langsung dosa 😭🔥" },
+      { name: "Yor Forger", reason: "Cantik, sopan, pembunuh berdarah dingin 💐🔪" },
+      { name: "Rem", reason: "Sayang kamu... meski kamu milih yang lain 😭💙" },
+      { name: "Asuna Yuuki", reason: "Waifu OG, bisa tebas monster dan ngurus rumah 💍⚔️" },
+      { name: "Kurumi Tokisaki", reason: "Cewek wibu level akhir. Cantik tapi nyeremin 😈🕰️" },
+      { name: "Emilia", reason: "Karena kamu nggak belajar dari masa lalu 🤡" },
+      { name: "Shinomiya Kaguya", reason: "Cewek pintar, kaya, tapi sama-sama malu kayak kamu 🧠❤️" },
+      { name: "Nezuko Kamado", reason: "Suka ngorok di dalam kotak 😴📦" },
+      { name: "Power", reason: "Brutal, bau, dan makan babi mentah... tipe kamu ya? 😭🩸" },
+      { name: "Marin Kitagawa", reason: "Cosplayer cantik, ceria, dan open-minded 😳" },
+      { name: "Chika Fujiwara", reason: "Senyumnya polos, otaknya chaos 😈🎵" },
+      { name: "Anya Forger", reason: "ASTAGA. LO MASUK PENJARA. 🫣🧠" },
+      { name: "Tohka Yatogami", reason: "Punya pedang gede, tapi hatinya lembut 💕" },
+      { name: "Mai Sakurajima", reason: "Susah dijangkau, tapi worth it buat dikejar 🌸📺" },
+      { name: "Megumin", reason: "EX-PLO-SIONNNN!! 💥🧙‍♀️" },
+      { name: "Raphtalia", reason: "Dari budak jadi waifu prime! 😤⚔️" }
+    ];
+
+    const husbus = [
+      { name: "Uzumaki Naruto", reason: "Pantang menyerah dan rela makan mie tiap hari 😭🍜" },
+      { name: "Uzumaki Minato", reason: "Kalem, kuat, dan ayah goals 💛" },
+      { name: "Futarou Uesugi", reason: "Pinter, hemat, dan penuh waifu di sekitarnya 🤯" },
+      { name: "Gojo Satoru", reason: "OP, ganteng, dan nyebelin level dewa 🤓🕶️" },
+      { name: "Levi Ackerman", reason: "Bersih-bersih dulu baru gas titan 💪🧼" },
+      { name: "Kakashi Hatake", reason: "Sensei favorit semua gender 📚😎" },
+      { name: "Itachi Uchiha", reason: "Kamu suka cowok misterius dan pengorbanan 😭🖤" },
+      { name: "Todoroki Shoto", reason: "Anak es & api yang dingin di luar, hangat di dalam 🔥❄️" },
+      { name: "Luffy", reason: "Ceria, bebas, dan jaminan petualangan seumur hidup 🏴‍☠️🍖" },
+      { name: "Denji", reason: "Gila, miskin, tapi semangatnya nyentuh langit 😭⚡" },
+      { name: "Inumaki Toge", reason: "Cuma bisa ngomong onigiri... tapi manis 💬🍙" },
+      { name: "Araragi Koyomi", reason: "Cowok aneh yang entah kenapa dapet banyak cewek 🤷‍♂️" },
+      { name: "Eren Yeager", reason: "Freedom atau hancurin dunia? Terserah dia 💣🌍" },
+      { name: "Kirito", reason: "OP di dunia digital, jago tebas monster dan cewek 😎🖤" },
+      { name: "Asta", reason: "Kecil, teriak mulu, tapi hatinya gede 💪📣" },
+      { name: "Sasuke Uchiha", reason: "Cowok dark yang perlu pelukan 🖤🗡️" },
+      { name: "Loid Forger", reason: "Agen rahasia, bapak idaman, bisa nembak & gendong anak dalam satu tarikan napas 🕶️🍼🔫" },
+      { name: "Tanjiro Kamado", reason: "Kamu suka cowok sopan dan penuh empati 😭🌸" },
+      { name: "Yuno (Black Clover)", reason: "Kalem dan punya aura bintang ⭐🌀" },
+      { name: "Tomoya Okazaki", reason: "Kalem, bapak ideal, dan bikin nangis 😭👨‍👧" }
+    ];
+
+    function cariJodoh() {
+      const name = document.getElementById("nameInput").value.trim();
+      const gender = document.getElementById("genderSelect").value;
+
+      if (name === "") {
+        alert("Masukin nama dulu bang/mbak 😭");
+        return;
+      }
+
+      let pasangan;
+      if (gender === "cowok") {
+        pasangan = waifus[Math.floor(Math.random() * waifus.length)];
+      } else {
+        pasangan = husbus[Math.floor(Math.random() * husbus.length)];
+      }
+
+      document.getElementById("result").innerHTML = `
+        ${name.toUpperCase()}, jodoh anime kamu adalah:
+        <br><br><strong>${pasangan.name} 💞</strong><br>
+        <em>${pasangan.reason}</em>
+      `;
+    }
+  </script>
+
+</body>
+</html>
